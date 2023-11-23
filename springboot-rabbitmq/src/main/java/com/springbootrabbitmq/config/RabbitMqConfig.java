@@ -66,7 +66,7 @@ public class RabbitMqConfig {
 				.with(jsonRoutingkey);			
 	}
 	
-	//required converter for json message
+	//required converter for json message which work internally with RabbitTemplate
 	@Bean
 	public MessageConverter converter() {
 		return new Jackson2JsonMessageConverter();

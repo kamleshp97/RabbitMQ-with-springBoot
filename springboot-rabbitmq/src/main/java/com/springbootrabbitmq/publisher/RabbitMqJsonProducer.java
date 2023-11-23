@@ -1,0 +1,35 @@
+package com.springbootrabbitmq.publisher;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.springbootrabbitmq.dto.User;
+
+@Service
+public class RabbitMqJsonProducer {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMqJsonProducer.class);
+
+	@Value("${rabbitmq.exchange.name1}")
+	private String exchange;
+	
+	@Value("${rabbitmq.routingkey.jsonname1}")
+	private String jsonRoutingkey;
+	
+	private RabbitTemplate rabbitTemplate;
+
+	public RabbitMqJsonProducer(RabbitTemplate rabbitTemplate) {
+		super();
+		this.rabbitTemplate = rabbitTemplate;
+	}
+	
+	
+	public void publishJson(User user) {
+		LOGGER.info(String.format("message sent -> %s", user.toString()));
+		rabbitTemplate.convertAndSend(exchange, jsonRoutingkey, user);
+	}
+	
+}

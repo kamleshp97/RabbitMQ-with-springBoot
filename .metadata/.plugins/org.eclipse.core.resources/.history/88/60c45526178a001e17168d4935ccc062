@@ -1,0 +1,24 @@
+package com.springbootrabbitmq.publisher;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+@Service
+public class RabbitMqJsonProducer {
+
+	@Value("${rabbitmq.exchange.name1}")
+	private String exchange;
+	
+	@Value("${rabbitmq.routingkey.jsonname1}")
+	private String jsonRoutingkey;
+	
+	private RabbitTemplate rabbitTemplate;
+
+	public RabbitMqJsonProducer(RabbitTemplate rabbitTemplate) {
+		super();
+		this.rabbitTemplate = rabbitTemplate;
+	}
+	
+	
+}

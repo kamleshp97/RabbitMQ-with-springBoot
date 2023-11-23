@@ -1,0 +1,5 @@
+package com.springbootrabbitmq.consumer;
+
+public class RabbitMqJsonConsumer {
+
+}

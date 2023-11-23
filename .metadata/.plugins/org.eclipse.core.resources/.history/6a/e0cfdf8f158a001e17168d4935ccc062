@@ -1,0 +1,5 @@
+package com.springbootrabbitmq.dto;
+
+public class User {
+
+}
