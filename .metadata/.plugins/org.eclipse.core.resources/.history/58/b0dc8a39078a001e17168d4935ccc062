@@ -1,0 +1,38 @@
+package com.springbootrabbitmq.config;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RabbitMqConfigJson {
+	@Value("${rabbitmq.exchange.name1}")
+	private String exchange;
+	
+	@Value("${rabbitmq.queue.name1}")
+	private String queue;
+	
+	@Value("${rabbitmq.routingkey.name1}")
+	private String routingkey;
+
+
+	@Bean
+	public Queue jsonQueue() {
+		return new Queue(queue);
+	}
+	
+	@Bean
+	public Binding jsonBinding() {
+		return BindingBuilder
+				.bind(queue1())
+				.to(exchange1())
+				.with(routingkey);
+				
+	}
+	
+	//connectionFactory, RabbitTemplate and RabbitAdmin beans are auto-configured by spring boot.
+}
