@@ -1,0 +1,32 @@
+package com.springbootrabbitmq.config;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RabbitMqConfig {
+
+	@Bean
+	public Queue queue1() {
+		return new Queue("first-queue");
+	}
+	
+	@Bean
+	public TopicExchange exchange1() {
+		return new TopicExchange("first-exchnage");
+	}
+	
+	public Binding binding() {
+		return BindingBuilder
+				.bind(queue1())
+				.to(exchange1())
+				.with("first-routing-key");
+				
+	}
+	
+	//connectionFactory, RabbitTemplate and RabbitAdmin beans are auto-configured by spring boot.
+}

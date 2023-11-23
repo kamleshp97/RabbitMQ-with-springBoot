@@ -1,0 +1,5 @@
+package com.springbootrabbitmq.controller;
+
+public class FirstController {
+
+}
